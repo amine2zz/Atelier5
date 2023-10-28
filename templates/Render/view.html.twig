@@ -1,0 +1,26 @@
+
+{% block content %}
+    <h1>List of Rendered Items</h1>
+<a class="button" href="/Render/Add">Create Render</a><tr>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th style="border: 1px solid #000;">ID</th>
+                <th style="border: 1px solid #000;">Username</th>
+                <th style="border: 1px solid #000;">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in renders %}
+                <tr>
+                    <td style="border: 1px solid #000;">{{ item.id }}</td>
+                    <td style="border: 1px solid #000;">{{ item.username }}</td>
+                                        <td>
+                        <a class="button" href="/Render/Update/{{ item.id }}">Edit</a>
+                        <a class="button" href="/Render/Delete/{{ item.id }}">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

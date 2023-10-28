@@ -1,0 +1,35 @@
+{% block content %}
+    <h1>List of Authors</h1>
+
+    <input type="text" id="Min" placeholder="min..">
+    <input type="text" id="Max" placeholder="max..">
+    <a class="button" href="">Search</a><br> <br>
+
+<a class="button" href="/Author/Add">Create Author</a><tr>
+    <table style="border: 1px solid #000;">
+        <thead>
+            <tr>
+                <th style="border: 1px solid #000;">ID</th>
+                <th style="border: 1px solid #000;">Username</th>
+                <th style="border: 1px solid #000;">Email</th>
+                <th style="border: 1px solid #000;">Number of Books</th>
+                <th style="border: 1px solid #000;">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for author in authors %}
+                <tr>
+                    <td style="border: 1px solid #000;">{{ author.id }}</td>
+                    <td style="border: 1px solid #000;">{{ author.username }}</td>
+                    <td style="border: 1px solid #000;">{{ author.email }}</td>
+                    <td style="border: 1px solid #000;">{{ author.nbbooks }}</td>
+                    <td>
+                        <a class="button" href="/Author/Update/{{ author.id }}">Edit</a>
+                        <a class="button" href="/Author/Delete/{{ author.id }}">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+{% endblock %}

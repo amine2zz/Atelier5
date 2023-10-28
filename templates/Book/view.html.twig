@@ -1,0 +1,40 @@
+{% block content %}
+<a class="button" href="/Book/Add">Create Book</a><br>
+<h1>List of Books</h1><br>
+
+<input type="text" id="searchInput" placeholder="Search for books by ref"><a class="button" href="">Search</a><br> <br>
+
+<p>Total Books: {{ books|length }}</p>
+<p>Published Books: {{ (books|length)-unpublishedBooksCount }}</p>
+<p>Unpublished Books: {{ unpublishedBooksCount }}</p>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th style="border: 1px solid #000;">ID</th>
+            <th style="border: 1px solid #000;">Reference</th>
+            <th style="border: 1px solid #000;">Title</th>
+            <th style="border: 1px solid #000;">Category</th>
+            <th style="border: 1px solid #000;">Publication Date</th>
+            <th style="border: 1px solid #000;">Published</th>
+            <th style="border: 1px solid #000;">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for book in books %}
+            <tr>
+                <td style="border: 1px solid #000;">{{ book.id }}</td>
+                <td style="border: 1px solid #000;">{{ book.ref }}</td>
+                <td style="border: 1px solid #000;">{{ book.title }}</td>
+                <td style="border: 1px solid #000;">{{ book.category }}</td>
+                <td style="border: 1px solid #000;">{{ book.publicationDate|date('Y-m-d') }}</td>
+                <td style="border: 1px solid #000;">{{ book.published ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a class="button" href="/Book/Update/{{ book.id }}">Edit</a>
+                    <a class="button" href="/Book/Delete/{{ book.id }}">Delete</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
